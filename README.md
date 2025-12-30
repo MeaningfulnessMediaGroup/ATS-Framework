@@ -68,6 +68,8 @@ To disclose your work, follow the **ATS Decision Matrix**:
    * Yes $\rightarrow$ **ATS-4**
    * No $\rightarrow$ **ATS-3**
 
+**Standard Disclosure Format:** `[Modality] ATS-[Tier][Modifier] [Extent]`
+
 **Example Disclosure:** `Text ATS-2 [E1]; Research ATS-1 [E2]`
 
 ---
