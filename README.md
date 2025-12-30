@@ -78,7 +78,7 @@ The ATS Framework is designed to be machine-readable and interoperable with stan
 ├── CONTRIBUTING.md          # Contribution guidelines
 ├── LICENSE                  # CC-BY-4.0
 └── README.md                # This landing page
-```text
+```
 
 ### Metadata Schemas
 The `/schemas` directory contains raw JSON and JSON-LD templates for embedding ATS data into digital files:
