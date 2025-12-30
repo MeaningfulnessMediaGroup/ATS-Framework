@@ -1,8 +1,8 @@
 # Authorship Transparency Statement (ATS) Framework v1.0
 
-![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.placeholder-blue)
-![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)
-![Protocol Status](https://img.shields.io/badge/Status-Public%20Standardization%20Proposal-green)
+[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.18091714-blue)](https://doi.org/10.5281/zenodo.18091714)
+[![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
+[![Protocol Status](https://img.shields.io/badge/Status-Public%20Standardization%20Proposal-green)](https://github.com/MeaningfulnessMediaGroup/ATS-Framework)
 
 **Protocol ID:** `ATS-FRAMEWORK-1.0`  
 **Latest Version:** v1.0 (Released January 2026)  
@@ -37,6 +37,20 @@ The entire framework is anchored on the **origin of the first complete draft of 
 
 ---
 
+## 📏 The Extent Axis (E-Scale)
+
+The **E-Scale** provides quantitative resolution regarding the volume of AI-drafted content within a specific work. While the Tier (0–5) defines *how* AI was used, the Extent defines *how much* of the final version originated as AI drafts.
+
+| Level | Name | Volume | Typical Use Case |
+| :--- | :--- | :--- | :--- |
+| **E0** | **Micro-use** | < 1% | A single sentence or minor background detail. |
+| **E1** | **Minimal** | 1–10% | Occasional scenes or specific descriptive blocks. |
+| **E2** | **Substantial** | 10–50% | Multiple chapters or core components. |
+| **E3** | **Dominant** | 50–90% | Majority of prose/assets originated as AI drafts. |
+| **E4** | **Total** | > 90% | Fully generated work with minimal human revision. |
+
+---
+
 ## 🚀 Quick Start for Creators
 
 To disclose your work, follow the **ATS Decision Matrix**:
@@ -53,6 +67,8 @@ To disclose your work, follow the **ATS Decision Matrix**:
 4. **Was generation executed via autonomous agentic system(s)?**  
    * Yes $\rightarrow$ **ATS-4**
    * No $\rightarrow$ **ATS-3**
+
+**Standard Disclosure Format:** `[Modality] ATS-[Tier][Modifier] [Extent]`
 
 **Example Disclosure:** `Text ATS-2 [E1]; Research ATS-1 [E2]`
 
@@ -78,7 +94,7 @@ The ATS Framework is designed to be machine-readable and interoperable with stan
 ├── CONTRIBUTING.md          # Contribution guidelines
 ├── LICENSE                  # CC-BY-4.0
 └── README.md                # This landing page
-```text
+```
 
 ### Metadata Schemas
 The `/schemas` directory contains raw JSON and JSON-LD templates for embedding ATS data into digital files:
@@ -107,7 +123,7 @@ Standardization is a collaborative process. We welcome input from creators, publ
 
 If you utilize this framework in your research or platform, please cite it as follows:
 
-> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [Zenodo DOI Link]
+> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://10.5281/zenodo.18091714]
 
 ---
 
