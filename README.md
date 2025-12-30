@@ -119,6 +119,14 @@ Standardization is a collaborative process. We welcome input from creators, publ
 
 ---
 
+## 📜 Citation
+
+If you utilize this framework in your research or platform, please cite it as follows:
+
+> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://10.5281/zenodo.18091714]
+
+---
+
 ## ⚖️ License & Copyright
 
 Copyright © 2026 Meaningfulness Media Group.
@@ -132,15 +140,3 @@ This work is licensed under the [Creative Commons Attribution 4.0 International 
 **Under the following terms:**
 - **Attribution:** You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 - **No additional restrictions:** You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
-
----
-
-## 📜 Citation
-
-If you utilize this framework in your research or platform, please cite it as follows:
-
-> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://10.5281/zenodo.18091714]
-
----
-
-**License:** This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
