@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meaningfulness.com.au/schemas/ats-v1.0.schema.json",
+  "title": "Authorship Transparency Statement (ATS) Metadata",
+  "description": "Validation schema for the ATS Framework v1.0 technical standard.",
+  "type": "object",
+  "required": ["ats_compliance"],
+  "properties": {
+    "@context": {
+      "type": "string",
+      "const": "https://schema.org"
+    },
+    "@type": {
+      "type": "string",
+      "const": "CreativeWork"
+    },
+    "name": { "type": "string" },
+    "identifier": { "type": "string" },
+    "datePublished": { "type": "string", "format": "date" },
+    "ats_compliance": {
+      "type": "object",
+      "required": ["protocol_id", "version", "modalities", "disclosure_string"],
+      "properties": {
+        "protocol_id": {
+          "type": "string",
+          "const": "ATS-FRAMEWORK-1.0"
+        },
+        "version": {
+          "type": "string",
+          "const": "1.0"
+        },
+        "modalities": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["level", "extent"],
+            "properties": {
+              "level": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 5
+              },
+              "extent": {
+                "type": "string",
+                "enum": ["E0", "E1", "E2", "E3", "E4"]
+              },
+              "modifier": {
+                "type": ["string", "null"],
+                "enum": ["T", null]
+              }
+            }
+          },
+          "description": "Keys should correspond to canonical modalities (text, image, audio, video, code, data, research)."
+        },
+        "technical_stack": {
+          "type": "object",
+          "properties": {
+            "models": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "provider": { "type": "string" },
+                  "name": { "type": "string" },
+                  "version": { "type": "string" }
+                }
+              }
+            },
+            "agentic_system": { "type": "boolean" }
+          }
+        },
+        "evidence_private": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "custodian": { "type": "string" },
+            "audit_ready": { "type": "boolean" }
+          }
+        },
+        "disclosure_string": {
+          "type": "string",
+          "description": "The human-readable ATS summary string."
+        }
+      }
+    }
+  }
+}

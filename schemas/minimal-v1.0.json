@@ -1,0 +1,10 @@
+{
+  "ats_protocol": "ATS-FRAMEWORK-1.0",
+  "version": "1.0",
+  "date": "2026-01-01",
+  "modality": ["text"],
+  "ats_level_text": 1,
+  "ats_modifier_text": "T",
+  "ats_extent_text": "E1",
+  "disclosure": "Text ATS-1T [E1]"
+}

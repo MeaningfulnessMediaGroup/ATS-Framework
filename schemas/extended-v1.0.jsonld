@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "WORK_TITLE",
+  "identifier": "DOI_OR_ISBN_HERE",
+  "ats_compliance": {
+    "protocol_id": "ATS-FRAMEWORK-1.0",
+    "version": "1.0",
+    "date_published": "2026-01-01",
+    "modalities": {
+      "text": { 
+        "level": 1, 
+        "modifier": "T", 
+        "extent": "E1" 
+      },
+      "research": { 
+        "level": 1, 
+        "modifier": null, 
+        "extent": "E2" 
+      },
+      "image": {
+        "level": 0,
+        "modifier": null,
+        "extent": "E0"
+      }
+    },
+    "technical_stack": {
+      "models": [
+        { "provider": "OpenAI", "name": "GPT-5", "version": "2025-12" }
+      ],
+      "agentic_system": false
+    },
+    "evidence_private": {
+      "type": ["timestamps", "redacted-prompts"],
+      "custodian": "Author",
+      "audit_ready": true
+    },
+    "disclosure_string": "Text ATS-1T [E1]; Research ATS-1 [E2]"
+  }
+}

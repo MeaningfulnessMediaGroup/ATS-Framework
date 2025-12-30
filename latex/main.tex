@@ -1,0 +1,875 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- PACKAGES ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{authblk}
+\usepackage{abstract}
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titling} % <--- NEW: Allows custom title spacing
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{caption}
+\usepackage{float}
+
+\usepackage{etoolbox} % Allows us to "patch" the abstract
+\usepackage[hang]{footmisc} % Standardizes footnote alignment
+\setlength{\footnotemargin}{1em} % Adjusts the gap between '*' and the text
+\usepackage[most]{tcolorbox} % For the professional boxed look
+
+\usepackage[dvipsnames,table,xcdraw]{xcolor} % Loads the color engine with extra names
+\usepackage{listings}
+
+% Define your custom colors AFTER loading xcolor
+\definecolor{jsonpurple}{rgb}{0.5,0,0.5}
+\definecolor{jsonorange}{rgb}{1,0.5,0}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    stringstyle=\color{jsonpurple},
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    frame=single,
+    rulecolor=\color{lightgray}, % Changed from black!30 to lightgray for better compatibility
+    showstringspaces=false
+}
+
+% --- GEOMETRY AND LAYOUT ---
+\geometry{
+  a4paper,
+  margin=1in,
+  top=0.8in, % <--- TWEAK: Slightly higher top margin
+  bottom=1in
+}
+\onehalfspacing
+
+% --- SPACING SETTINGS ---
+%\onehalfspacing % Line spacing (1.5)
+\setlength{\parskip}{0.2em} % Adds a blank line between paragraphs
+%\setlength{\parindent}{0pt} % Removes indentation (modern look)
+% 1. Moves the whole title block up
+\setlength{\droptitle}{-4em} 
+
+
+% 3. Spacing for Author (Ensures perfect centering)
+\preauthor{\begin{center}\large}
+\postauthor{\par\end{center}}
+
+% 4. Spacing for Affiliation (crushes space between Author and Affil)
+\setlength{\affilsep}{-0.3em} % <--- Tweak this for Name-to-Affiliation gap
+
+
+% --- COMPACT TITLE SETUP ---
+\setlength{\droptitle}{-4em} % <--- TWEAK: Moves title up
+\title{\textbf{Authorship Transparency Statement (ATS) Framework v1.0}\\
+    \large A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works\\
+    \vspace{0.5em}
+    \small Protocol ID: \texttt{ATS-FRAMEWORK-1.0} \\
+    \small \textbf{Status:} \textit{Public Proposal for Standardization}}
+
+
+% IMPORTANT: No \vspace inside these brackets
+\author{Djeff Bee\thanks{Correspondence: \href{mailto:info@meaningfulness.com.au}{info@meaningfulness.com.au}}}
+\affil{\textit{Principal Architect, Meaningfulness Media Group}}
+\date{January 1, 2026}
+
+% --- DOCUMENT BEGINS ---
+\begin{document}
+
+\maketitle
+\vspace{-1em} % <--- TWEAK: Pulls Abstract up closer to Date
+
+
+% --- COPYRIGHT FOOTER BLOCK ---
+\thispagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\cfoot{
+    \footnotesize Copyright \copyright\ 2026 Meaningfulness Media Group. \\
+    This work is licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}. \\
+    Page \thepage\ of \pageref{LastPage}
+}
+
+
+% --- ABSTRACT ---
+\begin{abstract}
+The proliferation of generative artificial intelligence (GenAI) has fundamentally disrupted traditional authorship, creating a critical nomenclature gap. Current disclosure requirements \citep{kdp2023, usco2023} frequently rely on low-resolution binaries—simply asking whether AI was ``used''—facilitating a ``transparency paradox'' where creators are incentivized toward obfuscation rather than honest methodology. 
+
+This paper proposes the \textbf{Authorship Transparency Statement (ATS) Framework v1.0}, a multi-tiered protocol anchored by the \textit{Bright Line of Prose Origin}. This mechanical distinction shifts the focus from subjective ``creative control'' to the objective origin of first-pass drafting. By defining a six-tier hierarchy (ATS-0 through ATS-5), the protocol categorizes human roles across a gradient of increasing AI autonomy: from the \textit{Traditional Artisan} (ATS-0) and \textit{Architect} (ATS-1) to the \textit{Director} (ATS-3) and \textit{Systems Architect} (ATS-4). 
+
+Furthermore, the ATS framework provides a foundational schema for institutional implementation, offering standardized intake templates and metadata structures designed to interoperate with provenance standards such as C2PA \citep{c2pa2025}. By replacing primitive binaries with a rigorous, methodology-based audit, the ATS protocol seeks to preserve the integrity of authorship and establish a verifiable ``paperwork of becoming'' for the new creative age.
+\end{abstract}
+
+\vspace{2em}
+\noindent \textbf{Keywords:} AI Ethics, Generative AI, Authorship Transparency, Creative Integrity, ATS Protocol, C2PA, Technical Standards, Multi-modal Disclosure.
+
+
+% --- TOC ---
+\newpage
+\hrule
+\vspace{0.5em}
+\thispagestyle{fancy}
+\tableofcontents
+\vspace{2em}
+\hrule
+
+% --- Section 1 ---
+\newpage
+
+% --- FOOTER AND HEADER SETTINGS ---
+\pagestyle{fancy}
+\thispagestyle{fancy}
+
+\fancyhf{}
+\fancyhead[L]{\footnotesize \texttt{ATS-FRAMEWORK-1.0}} % <--- Protocol ID in top left
+\fancyhead[R]{\footnotesize Section \thesection}     % <--- Current Section in top right
+\cfoot{
+    \footnotesize Copyright \copyright\ 2026 Meaningfulness Media Group. \\
+    This work is licensed under \href{https://creativecommons.org/licenses/by/4.0/}{CC BY 4.0}. \\
+    Page \thepage\ of \pageref{LastPage}
+}
+\renewcommand{\headrulewidth}{0.4pt} % Adds a thin line under the header
+
+\section{Preamble: The Need for a High-Resolution Language}
+The emergence of advanced generative AI has introduced a paradigm shift in creative workflows, yet the language for discussing its use remains primitive and binary. The common inquiry, ``Did you use AI?'', fails to distinguish between a tool for stylistic refinement and an engine for narrative generation. This inadequacy creates an environment that punishes honest innovation and rewards either categorical denial or outright deception. It is a low-resolution question for a high-resolution reality.
+
+Current industry responses, while well-intentioned, suffer from a lack of resolution. Platforms such as Amazon Kindle Direct Publishing \citep{kdp2023} utilize a binary distinction between ``AI-assisted'' and ``AI-generated,'' yet provide no clear metric for where one ends and the other begins. Similarly, advocacy groups like the Authors Guild emphasize human-authored certification \citep{authorsguild2024} but struggle to define the exact point at which an author’s ``augmented'' process becomes a ``co-creative'' one.
+
+This lack of standardized nomenclature has created an intellectual vacuum. Without a shared language, the creative community is polarized between two extremes: a reactionary denialism that rejects all digital assistance, and a generative maximalism that obscures human intent behind autonomous systems. In this environment, the ``mystique of creation'' is frequently weaponized to prevent an honest accounting of the creator's toolkit. Trust is eroded not by the technology itself, but by the absence of a verifiable way to declare how that technology was utilized.
+
+The ATS framework is an act of engineering for a new creative age—an attempt to provide ``jurisprudence by design'' for a world where the line between the author and their tools is more complex than ever before. Its purpose is not to judge, but to clarify; not to restrict, but to inform. It provides a professional lexicon for creators to accurately describe their methodology and for institutions to make informed assessments regarding authorship, copyright, and creative integrity. 
+
+By embracing a clear, honest, and shared language, we can navigate the future of storytelling with confidence. The ATS framework provides the ``paperwork of becoming'' for a new era of human-machine synthesis. It is a protocol for a new kind of truth.
+
+
+\subsection{Scope of Application}
+This protocol is intended for application to \textbf{Creative Works} including, but not limited to, fiction, non-fiction, poetry, journalism, and academic prose. While the principles of the ATS Tiers may be extrapolated to purely functional text (e.g., technical documentation, legal contracts, or correspondence), the primary focus of v1.0 is the preservation of authorial integrity in narrative and conceptual storytelling.
+
+
+
+% --- Section 2 ---
+\newpage
+\section{Related Work and Differentiation}
+The ATS framework does not exist in isolation; it is a socio-technical response to a fragmented landscape of disclosure. To understand its utility, it must be positioned relative to existing academic, technical, and commercial standards.
+
+\subsection{Academic Taxonomies vs. Creative Autonomy}
+Current academic frameworks, most notably the Artificial Intelligence Disclosure (AID) Framework \citep{aid2024}, provide essential role-based headings for research and scientific integrity. These frameworks are designed to attribute AI's involvement in specific process stages, such as data curation or literature analysis. While effective for scholarly work, AID is primarily \textit{process-oriented} and lacks the granularity required for the \textit{autonomy of the creative spark} found in narrative prose. The ATS differentiates itself by focusing on the ``Bright Line'' of token origin, providing a ladder of creative intent (e.g., Architect, Director, Patron) that reflects the lived reality of novelists, scriptwriters, and journalists.
+
+\subsection{Technical Provenance vs. Human-Centric Schema}
+At the infrastructure level, the Coalition for Content Provenance and Authenticity (C2PA) provides the technical ``plumbing'' for content origin \citep{c2pa2025}. C2PA allows for the embedding of secure manifests that attest to \textit{where} and \textit{when} a file was created. However, C2PA is modality-neutral and does not define the \textit{taxonomic meaning} of the human-machine boundary. The ATS framework acts as the missing high-resolution schema for these technical assertions. By utilizing ATS metadata (Section 5.5), a C2PA manifest can move beyond a binary ``AI-Generated'' tag to a verifiable claim of human-centric synthesis (ATS-2) or directed curation (ATS-3).
+
+\subsection{Beyond Commercial Binaries}
+Mainstream commercial platforms, such as Amazon Kindle Direct Publishing \citep{kdp2023}, have implemented policies requiring disclosure of AI-generated content. These policies typically rely on the subjective and legally ambiguous term ``substantial editing.'' As noted by the U.S. Copyright Office \citep{usco2023}, current registration guidance centers on the degree of ``creative control'' exercised by a human. The ATS framework addresses the inherent subjectivity of these binaries by replacing ``creative control'' with a mechanical, verifiable audit of prose drafting. It provides the industry with a common, versioned protocol that remains consistent regardless of the platform or jurisdiction.
+
+
+
+
+% --- Section 3 ---
+\newpage
+\section{The Foundational Principle: The ``Bright Line'' of Prose Origin}
+The entire ATS framework is anchored on a single, critical distinction: the origin of the first complete draft of prose. This ``Bright Line'' determines the boundary between augmentation (ATS-1) and generation (ATS-2 and higher). 
+
+\begin{itemize}
+    \item \textbf{Reactive Use (ATS-1):} If an AI is used only to \textbf{react to, analyze, or refine} prose already written by a \textbf{human}, the work is considered \textbf{Augmented Authorship}. The human is the sole originator of the prose. 
+    \item \textbf{Generative Use (ATS-2+):} If an AI is used to \textbf{generate original, first-pass prose from a human prompt}, the work is considered \textbf{Co-Creative} or higher. The AI is a participant in the prose creation. 
+\end{itemize}
+
+\subsection*{The Transformative Carve-out (ATS-1T)}
+A critical exception to the Bright Line exists for \textbf{Transformative Rendering}. If an AI is used to render 100\% human-authored source prose into another language (Translation) or another format (e.g., summary for accessibility), the work remains within the \textbf{Augmented (ATS-1)} category. This is designated as \textbf{ATS-1T}. To qualify, the AI must not be used to invent new narrative content or plot points.
+
+\subsection*{Boundary Test A, ATS-1 vs ATS-2}
+If any sentence or paragraph that survives into the final publication was \textbf{first drafted by AI}, even if later edited, the work is \textbf{ATS-2 or higher}. 
+\textit{Note: Rendering author-owned source text into a new language via AI is the sole exception to this rule and is classified as ATS-1T.}
+
+\subsection*{Boundary Test B, ATS-2 vs ATS-3}
+The definitive test is the \textbf{unit of generation}. If the AI was used to draft a complete \textbf{structural unit} (scene or chapter) from a human-provided outline, the work is \textbf{ATS-3 or higher}. ATS-2 is reserved for \textbf{sub-structural synthesis}, where AI-generated text is integrated at the sentence or paragraph level.
+
+\vspace{1em}
+\noindent \textit{First-pass prose} means any AI-generated token sequence that is more than a mechanical correction and that survives into publication. 
+
+\noindent This principle is the primary litmus test for classifying a creative work.
+
+
+% --- Section 4 ---
+\newpage
+\section{The ATS Tiers --- A Spectrum of Creative Integration}
+The ATS framework consists of a clear, numerical scale representing the increasing integration and autonomy of generative AI in the creative process. A higher number corresponds to a greater degree of AI autonomy.
+
+\subsection*{Classification vs. Integrity}
+It is critical to distinguish between the \textbf{ATS Tier} and the \textbf{Level of Curation}:
+\begin{itemize}
+    \item \textbf{The Tier (ATS-0 to ATS-5)} is an \textit{objective classification} determined solely by the origin of the prose and the unit of generation (The Bright Line).
+    \item \textbf{Substantial Curation} is an \textit{integrity requirement}. It describes the human effort applied to AI-generated drafts. A failure to perform substantial curation on an ATS-2 draft does not move the work to a different tier; rather, it results in a failure of conformance for the ``Synthesis'' label.
+\end{itemize}
+
+\begin{description}[style=multiline, leftmargin=3cm, font=\bfseries]
+    \item[ATS-0] \textbf{Unaugmented Authorship} (The Traditional Artisan). No generative functions; assistive tooling limited to passive spelling and grammar.
+    \item[ATS-1] \textbf{Augmented Authorship} (The Architect). Human-authored; AI used only for refinement, analysis, research, or transformative rendering (ATS-1T).
+    \item[ATS-2] \textbf{Co-Creative Synthesis} (The Producer). Portions of first-pass prose originated with AI local-level prompts; substantially edited by human.
+    \item[ATS-3] \textbf{Generative Curation} (The Director). AI drafted structural units (scenes/chapters) from human outlines; curated/edited by human.
+    \item[ATS-4] \textbf{Agent-Driven Generation} (The Systems Architect). Work generated by custom-designed AI agent(s) executing a high-level creative brief.
+    \item[ATS-5] \textbf{High-Level Conceptual Generation} (The Patron). Core plot, characters, and prose generated by AI from high-level conceptual prompts.
+\end{description}
+
+% --- Figure 1 ---
+\newpage
+\begin{figure}[H]
+\noindent \textbf{Figure 1: ATS Framework v1.0 Decision Matrix}
+\centering
+\begin{tcolorbox}[
+    colback=white, 
+    colframe=black, 
+    arc=0mm, 
+    boxrule=1.5pt,
+    title=\textbf{The Decision Tree:}
+]
+\small
+\begin{enumerate}[leftmargin=1.5em, nosep]
+  \item \textbf{Did any final-use prose begin as AI drafts?} $\rightarrow$ \textit{No} = ATS-0/1; \textit{Yes} $\rightarrow$ \textbf{Go to 2}
+  \item \textbf{Was AI confined to local prompts (sentence/paragraph)?} $\rightarrow$ \textit{Yes} = ATS-2; \textit{No} $\rightarrow$ \textbf{Go to 3}
+  \item \textbf{Did AI draft structural units (scenes/chapters) from your outline?} $\rightarrow$ \textit{Yes} $\rightarrow$ \textbf{Go to 4}; \textit{No} = ATS-5
+  \item \textbf{Was generation executed via autonomous agentic system(s)?} $\rightarrow$ \textit{Yes} = ATS-4; \textit{No} = ATS-3
+\end{enumerate}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\noindent \textbf{The Extent Axis (E-Scale):} \\
+\texttt{E0 < 1\% | E1 1--10\% | E2 10--50\% | E3 50--90\% | E4 > 90\%}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\noindent \textbf{Institutional Triage Logic (Example Policy):} \\
+\begin{tabular}{ll}
+\textbf{Standard:} & Tier $\le$ 1 OR (Tier 2 + Extent $\le$ E1) \\
+\textbf{Editorial Review:} & Tier 3 OR (Tier 2 + Extent $\ge$ E2) \\
+\textbf{Legal Review:} & Tier $\ge$ 4 OR Agentic Systems = Yes
+\end{tabular}
+
+\vspace{0.5em}
+\hrule
+\vspace{0.5em}
+
+\noindent \textbf{Standard Disclosure Format:} \\
+\texttt{``[Modality] ATS-[Tier] [Extent Modifier]''} $\rightarrow$ \textit{e.g., ``Text ATS-2 [E1]''}
+\end{tcolorbox}
+\end{figure}
+\vspace{-1.5em}
+\noindent \textit{Note: A consolidated reference for the Authorship Transparency Statement (ATS) protocol.}
+
+
+
+% --- Figure 2 ---
+\vspace{2.5em}
+\begin{figure}[H]
+\centering
+\noindent \textbf{Figure 2: The Gradient of Autonomy}
+\begin{center}
+\begin{tikzpicture}
+    \fill[blue!20] (0,0) rectangle (2,0.6) node[midway, black, font=\tiny\bfseries] {ATS-0};
+    \fill[blue!40] (2,0) rectangle (4,0.6) node[midway, black, font=\tiny\bfseries] {ATS-1};
+    \fill[teal!40] (4,0) rectangle (6,0.6) node[midway, black, font=\tiny\bfseries] {ATS-2};
+    \fill[orange!40] (6,0) rectangle (8,0.6) node[midway, black, font=\tiny\bfseries] {ATS-3};
+    \fill[red!40] (8,0) rectangle (10,0.6) node[midway, black, font=\tiny\bfseries] {ATS-4};
+    \fill[red!60] (10,0) rectangle (12,0.6) node[midway, white, font=\tiny\bfseries] {ATS-5};
+    \draw[<->, thick] (0,-0.2) -- (12,-0.2);
+    \node at (0,-0.5) {\tiny Human-Dominant};
+    \node at (12,-0.5) {\tiny AI-Dominant};
+\end{tikzpicture}
+\end{center}
+\textit{Note: The transition from ATS-1 to ATS-2 represents the crossing of the ``Bright Line'' into generative token origin.}
+\end{figure}
+
+
+
+% --- Section 5 ---
+\newpage
+\section{Implementation and Usage}
+The ATS framework is designed as a simple, clear, and voluntary standard to promote transparency and build trust across the creative ecosystem.
+
+% --- 5.1 ---
+\subsection{The Extent Axis (The E-Scale)}
+To provide greater granularity regarding the volume of AI involvement, the ATS framework utilizes a recommended \textbf{Extent (E)} modifier. This describes the percentage of the final work (per modality) that originated as AI-drafted tokens.
+
+\begin{itemize}
+    \item \textbf{E0: Micro-use} ($<1\%$) --- e.g., a single sentence or a minor background detail.
+    \item \textbf{E1: Minimal use} ($1-10\%$) --- e.g., an occasional scene or specific descriptive blocks.
+    \item \textbf{E2: Substantial use} ($10-50\%$) --- e.g., multiple chapters or core components.
+    \item \textbf{E3: Dominant use} ($50-90\%$) --- e.g., the majority of the prose originated as AI drafts.
+    \item \textbf{E4: Total generation} ($>90\%$) --- e.g., a fully generated work with minimal human alteration.
+\end{itemize}
+
+\noindent \textbf{Example:} A work disclosed as ``Text ATS-2 [E1]'' indicates a co-creative synthesis where AI-drafted prose accounts for between 1\% and 10\% of the final text.
+
+\vspace{0.5em}
+\noindent \textbf{Estimation Methodology:} The E-Scale is intended as a best-faith self-estimation by the creator. For long-form works, authors \textbf{MAY} utilize sampling (e.g., auditing three representative chapters), draft-comparison tools, or prompt log word-counts to determine the correct bracket. In the event of an institutional audit, creators are expected to provide a description of their estimation methodology rather than a precise mathematical proof.
+
+% --- 5.2 ---
+\subsection{Declaration for Mixed-Methodology Works}
+A single work may utilize different ATS tiers for different components (modalities). In such cases, the work should be declared with a primary tier for its main component and ancillary tiers for others.
+
+\begin{itemize}
+    \item \textbf{Example 1 (Historical Fiction):} ``Text ATS-1 [E1]; Research ATS-1 [E2].'' 
+    \item \textbf{Example 2 (Scientific Paper):} ``Text ATS-1 [E1]; Data ATS-3 [E3]; Research ATS-4 [E4].''
+\end{itemize}
+
+\newpage
+\noindent \textbf{Canonical fields:}
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!2}, 
+    frame=L, 
+    framerule=1.5pt, 
+    rulecolor=\color{black!30}, 
+    xleftmargin=2em, 
+    framesep=1em,
+    basicstyle=\small\ttfamily
+]
+ats_level_text, ats_level_image, ats_level_audio, 
+ats_level_video, ats_level_code, ats_level_data, 
+ats_level_research.
+\end{lstlisting}
+
+
+% --- 5.3 ---
+\subsection{Creator Self-Assessment Checklist}
+\textbf{Definition --- First-Pass Prose:} Any new token sequence drafted by AI that is more than a mechanical correction, irrespective of later human revision. To determine the correct ATS level for a textual work, an author should use the following decision tree:
+
+\begin{enumerate}
+    \item \textbf{Did any first-pass prose that survived into the final text originate from an AI?}
+    \begin{itemize}
+        \item \textbf{No} (AI was only used to refine, analyze, or \textbf{translate} my own writing) $\rightarrow$ Go to Question 1A.
+        \item \textbf{Yes} $\rightarrow$ Go to Question 2.
+        \item \textbf{1A.} Was the AI used to translate 100\% human-authored source text?
+        \begin{itemize}
+            \item \textbf{Yes} $\rightarrow$ Your work is \textbf{ATS-1T}.
+            \item \textbf{No} $\rightarrow$ Go to Question 1B.
+        \end{itemize}
+        \item \textbf{1B.} Was my use of digital tools limited to passive spell/grammar checkers?
+        \begin{itemize}
+            \item \textbf{Yes} $\rightarrow$ Your work is \textbf{ATS-0}.
+            \item \textbf{No} $\rightarrow$ Your work is \textbf{ATS-1}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Was the AI's prose generation confined to specific, local-level prompts (sentences or paragraphs) which I then substantially rewrote or integrated?}
+    \begin{itemize}
+        \item \textbf{Yes} $\rightarrow$ Your work is \textbf{ATS-2}.
+        \item \textbf{No} (The AI drafted entire structural units, such as scenes or chapters, from my outlines) $\rightarrow$ Go to Question 3.
+    \end{itemize}
+    \item \textbf{Did I provide the AI with a detailed, scene-by-scene outline and character bible?}
+    \begin{itemize}
+        \item \textbf{Yes} $\rightarrow$ Go to Question 4.
+        \item \textbf{No} (The AI generated the plot/characters from a high-level concept) $\rightarrow$ Your work is \textbf{ATS-5}.
+    \end{itemize}
+    \item \textbf{Did I design the AI agent system itself (its persona, rules, and knowledge base) to execute this outline?}
+    \begin{itemize}
+        \item \textbf{Yes} $\rightarrow$ Your work is \textbf{ATS-4}.
+        \item \textbf{No} (I used a general-purpose AI model) $\rightarrow$ Your work is \textbf{ATS-3}.
+    \end{itemize}
+\end{enumerate}
+
+
+% --- 5.4 ---
+\newpage
+\subsection{Institutional Intake Template}
+Submission portals can replace a binary tick box with the following fields for automated routing and triage:
+
+\begin{table}[h]
+\centering
+\small
+\renewcommand{\arraystretch}{1.3}
+\noindent\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Field} & \textbf{Type} & \textbf{Options / Format} \\ \hline
+Primary Modality & Dropdown & Text, Image, Audio, Video, Code, Data, Research \\ \hline
+\texttt{ats\_level\_[modality]} & Dropdown & ATS-0 \dots ATS-5 (plus T modifier) \\ \hline
+\texttt{ats\_level\_research} & Dropdown & ATS-0 \dots ATS-5 \\ \hline
+\texttt{ats\_extent\_text} & Dropdown & E0, E1, E2, E3, E4 \\ \hline
+Ancillary Modalities & Checkboxes & Image, Audio, Video, Code, Data, Research \\ \hline
+Uses agentic systems & Toggle & Yes / No \\ \hline
+Human Curation Level & Dropdown & High (Substantial), Moderate, Low/None \\ \hline
+Model family (free text) & Text & e.g., GPT-5, SDXL \\ \hline
+Evidence class (private) & Dropdown & A Timestamps, B Redacted Prompts, C Attestation \\ \hline
+\end{tabular}
+}
+\end{table}
+
+\noindent This allows institutions to implement a high-resolution triage system. By mapping the \textbf{ATS Tier} against the \textbf{Extent (E-Scale)}, submission portals can automate the following policy bands:
+
+\begin{lstlisting}[
+    backgroundcolor=\color{gray!5}, 
+    frame=L, 
+    framerule=2pt, 
+    rulecolor=\color{black!50}, 
+    xleftmargin=2em, 
+    framesep=1em,
+    basicstyle=\small\ttfamily,
+    caption={Standard Triage Policy Specification}
+]
+# POLICY BAND 1: ROUTINE ACCEPTANCE
+IF (ats_level_text <= 1) OR (ats_level_text == 2 AND ats_extent_text <= E1) 
+   THEN status = "STANDARD_PROCESSING";
+
+# POLICY BAND 2: EDITORIAL TRIAGE
+IF (ats_level_text == 2 AND ats_extent_text >= E2) OR (ats_level_text == 3)
+   THEN status = "FLAG_FOR_EDITORIAL_REVIEW"
+   AND requires_curation_attestation = TRUE;
+
+# POLICY BAND 3: LEGAL & COPYRIGHT AUDIT
+IF (ats_level_text >= 4) OR (uses_agentic_systems == TRUE)
+   THEN status = "FLAG_FOR_LEGAL_REVIEW"
+   AND evidence_class_required = "B (Redacted Prompts)";
+
+# POLICY BAND 4: INTEGRITY AUDIT (Consistency Check)
+IF (ats_level_text == 2 AND human_curation_level == "Low")
+   THEN status = "FLAG_FOR_INTEGRITY_AUDIT";
+\end{lstlisting}
+
+\textit{Note: Policy Band 4 identifies ``low-effort synthesis,'' where a work is claimed as ATS-2 (Co-Creative) but the author has not met the integrity requirement for substantial curation.}
+
+
+\textit{Privacy note: Keep prompts redacted by default. Evidence remains private unless audited.}
+
+
+% --- 5.5 ---
+\subsection{Machine-Readable Metadata}
+For digital files (e.g., EPUB, PDF), it is recommended to embed a minimal JSON header in the file's metadata for automated parsing.
+
+\subsubsection*{Minimal JSON Header (v1.0):}
+\begin{lstlisting}
+{
+  "ats_protocol": "ATS-FRAMEWORK-1.0",
+  "date": "2026-01-01",
+  "modality": ["text","research"],
+  "ats_level_text": 1,
+  "ats_modifier_text": "T",
+  "ats_extent_text": "E1",
+  "ats_level_research": 1,
+  "disclosure": "Text ATS-1T [E1]; Research ATS-1"
+}
+\end{lstlisting}
+
+\subsubsection*{Extended JSON Header (v1.0):}
+\begin{lstlisting}
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "WORK_TITLE",
+  "identifier": "DOI_OR_ISBN_HERE",
+  "ats_compliance": {
+    "protocol_id": "ATS-FRAMEWORK-1.0",
+    "datePublished": "2026-01-01",
+    "version": "1.0",
+    "modalities": {
+      "text": { "level": 2, "extent": "E1", "modifier": null },
+      "image": { "level": 4, "extent": "E4", "modifier": null },
+      "research": { "level": 1, "extent": "E2", "modifier": "1T" }
+    },
+    "technical_stack": {
+      "models": [
+        { "provider": "OpenAI", "name": "GPT-5.1", "version": "2025-10" },
+        { "provider": "Stability.ai", "name": "SDXL", "version": "1.0" }
+      ],
+      "agentic_system": false
+    },
+    "evidence_private": {
+      "type": ["timestamps", "redacted-prompts"],
+      "custodian": "Author",
+      "audit_ready": true
+    },
+    "disclosure_string": "Text ATS-2 [E1]; Images ATS-4 [E4]; Research ATS-1T [E2]"
+  }
+}
+\end{lstlisting}
+
+% --- 5.6 ---
+\subsection{Standard Disclosure Statements}
+Authors and publishers can use these standard notes for copyright pages or author's notes.
+
+\begin{itemize}
+    \item \textbf{Micro-Note (Copyright Page):} ``This work discloses its creative methodology under the Authorship Transparency Statement (ATS) v1.0. \textbf{Text ATS-1; Images ATS-4.}''
+    \item \textbf{Short Statement (Author's Note):} ``The author retained creative direction throughout. The prose is human-authored, with AI used for refinement and analysis (ATS-1). Image assets were generated by a custom AI agent under human direction (ATS-4).''
+\end{itemize}
+
+\noindent These are one-liner canonicals that authors and editors can quote verbatim:
+\begin{itemize}
+    \item \textbf{ATS-0:} ``No generative functions used for ideas or prose; assistive tooling limited to passive spelling and grammar''
+    \item \textbf{ATS-1:} ``Human-authored prose; AI used only for refinement, analysis, research, or translation''
+    \item \textbf{ATS-2:} ``Co-creative text; portions originated as AI drafts and were substantially rewritten and integrated by the author''
+    \item \textbf{ATS-3:} ``Director model; AI drafted scenes/chapters from outlines; author curated and edited''
+    \item \textbf{ATS-4:} ``Agent-driven; custom AI agent(s) produced the work from human goals and constraints; human served as systems architect''
+    \item \textbf{ATS-5:} ``Concept-prompted; AI generated plot, world, and prose from high-level prompts''
+\end{itemize}
+
+\textit{Misrepresentation: False or negligent disclosure of ATS levels may result in rejection, withdrawal, or remedial notices at the publisher’s discretion.}
+
+
+
+% --- Section 6 ---
+\newpage
+\section{Conformance and Compliance}
+To ensure the integrity of the Authorship Transparency Statement, creators and institutions adhering to this protocol \textbf{MUST} comply with the following normative requirements. The key words ``MUST'', ``MUST NOT'', ``REQUIRED'', ``SHOULD'', ``SHOULD NOT'', ``RECOMMENDED'', ``MAY'', and ``OPTIONAL'' in this document are to be interpreted as described in \textbf{RFC 2119} \citep{rfc2119}.
+
+\subsection{General Requirements}
+\begin{itemize}
+    \item \textbf{Tier Disclosure:} The author \textbf{MUST} disclose the highest ATS Tier utilized for any portion of the work that survives into the final version.
+    \item \textbf{Modality Separation:} If different ATS Tiers are used for different modalities, the creator \textbf{MUST} disclose them separately as per Section 5.2.
+    \item \textbf{The Bright Line:} Any work containing first-pass prose drafted by AI (excluding the ATS-1T carve-out) \textbf{MUST NOT} be disclosed as ATS-0 or ATS-1.
+\end{itemize}
+
+\subsection{Integrity of the Synthesis Label (ATS-2)}
+For a work to be disclosed as \textbf{ATS-2 [Synthesis]}, the author \textbf{SHOULD} perform substantial curation. 
+\begin{itemize}
+    \item \textbf{Requirement:} If AI-generated prose is utilized with minimal or no human editing, the work \textbf{MUST NOT} claim the ``Synthesis'' label in plain-text summaries or marketing materials.
+    \item \textbf{Classification:} The work remains \textbf{ATS-2} (as defined by the local-unit workflow), but the disclosure \textbf{MUST} be qualified with a low-curation flag in the metadata (e.g., \texttt{Human Curation Level = Low}).
+\end{itemize}
+
+\subsection{Evidence and Privacy}
+\begin{itemize}
+    \item \textbf{Audit Trail:} Creators \textbf{SHOULD} maintain private evidence of their methodology (e.g., timestamps or prompt logs). 
+    \item \textbf{Privacy:} Institutions \textbf{SHOULD NOT} require the public release of prompt logs unless an audit is triggered by a claim of misrepresentation.
+\end{itemize}
+
+\subsection{Compliance Claims}
+A work may only claim to be \textit{ATS v1.0 Compliant} if it includes both the \textbf{Tier} and the \textbf{Extent} (E-Scale) for its primary modality.
+
+
+
+% --- Section 7 ---
+\newpage
+\section{Conclusion: A New Kind of Truth}
+In an age of augmented reality and powerful digital tools, where the line between the real and the simulated is becoming ever more blurred, the most valuable currency is verifiable truth. The ATS protocol is an act of ``jurisprudence by design''—an attempt to build a fair and honest system for a new creative reality before that reality is defined by fear and misunderstanding. 
+
+The mystique of creation does not lie in the obfuscation of one's tools, but in the quality, vision, and soul of the final work. The ATS framework is a stand against the notion that new technologies must inevitably lead to an erosion of trust. It proposes the opposite: that by embracing a clear, honest, and shared language, we can navigate the future of storytelling with confidence and integrity.
+
+Standardizing the lexicon of generative integration is not merely a technical requirement; it is a moral necessity for the preservation of human creative sovereignty. By adopting the ATS protocol, creators and institutions can move beyond binary suspicion toward a future defined by synthesis and transparency. The framework does not ask a creator to defend their process; it simply asks them to name it. In doing so, we ensure that the value of human authorship remains distinct, recognized, and verifiable for generations to come. 
+
+\vspace{2em}
+\noindent \textit{We invite creators, publishers, and standards bodies to adopt, extend, and refine this protocol. Feedback and contributions toward v1.1 are welcome via the public repository at:} \url{https://github.com/MeaningfulnessMedia/ATS-Framework}.
+
+
+
+
+
+% --- Bibliography ---
+\newpage
+\begin{thebibliography}{99}
+
+\bibitem[AID(2024)]{aid2024}
+Weaver, K. D. (2024). The Artificial Intelligence Disclosure (AID) Framework: An Introduction. \textit{College \& Research Libraries News}, 85(10). \url{https://doi.org/10.5860/crln.85.10.407}
+
+\bibitem[Authors Guild(2024)]{authorsguild2024}
+Authors Guild. (2024, April). \textit{AI Best Practices for Authors}. Accessed December 30, 2025. \url{https://authorsguild.org/advocacy/artificial-intelligence/ai-best-practices-for-authors/}
+
+\bibitem[Bradner(1997)]{rfc2119}
+Bradner, S. (1997). \textit{Key words for use in RFCs to Indicate Requirement Levels}. IETF RFC 2119. \url{https://datatracker.ietf.org/doc/html/rfc2119}
+
+\bibitem[C2PA(2025)]{c2pa2025}
+Coalition for Content Provenance and Authenticity. (2025). \textit{Technical Specification v2.x}. Accessed December 30, 2025. \url{https://c2pa.org/specifications/}
+
+\bibitem[KDP(2023)]{kdp2023}
+Amazon Kindle Direct Publishing. (2023). \textit{AI Content Guidelines}. \url{https://kdp.amazon.com/en_US/help/topic/G200672390}
+
+\bibitem[USCO(2023)]{usco2023}
+U.S. Copyright Office. (2023, March 16). Copyright Registration Guidance: Works Containing Material Generated by Artificial Intelligence. \textit{88 Federal Register 16190}. 
+
+\end{thebibliography}
+
+
+
+% --- Appendices ---
+\clearpage
+\appendix
+\fancyhead[R]{\footnotesize Appendix \thesection} % <--- ADD THIS LINE HERE
+\addcontentsline{toc}{section}{\textbf{Appendices}} 
+
+% Dedicated title page
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+{\LARGE\bfseries Appendices}
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+
+% --- Appendix A: Detailed Tiers ---
+
+\section{Deep-Dive Principles}
+
+This appendix provides a comprehensive expansion of the Authorship Transparency Statement (ATS) tiers, detailing the principles, permitted functions, and analogies for each level of generative AI integration. While the framework is designed to be conceptually universal across all creative media, the specific interpretations and examples provided in this section are tailored specifically for \textbf{prose and textual authorship}. For detailed interpretations of these tiers within other creative domains—including research, visual arts, software development, audio, and spatial design—please refer to \textbf{Appendix C: Application to Non-Textual Media}.
+
+\subsection*{ATS-0: Unaugmented Authorship}
+
+\begin{itemize}
+    \item \textbf{Principle:} The work was created without the use of active generative AI for any part of the ideation, drafting, or content creation process. The author's digital toolkit is limited to standard word processors and their integrated, passive assistive functions.
+    \item \textbf{Permitted Assistive Functions:}
+    \begin{itemize}
+        \item Spell checking.
+        \item Grammar correction (e.g., correcting a verb tense).
+        \item Basic style suggestions that do not generate new content (e.g., flagging a passive voice sentence or suggesting a simpler word).
+    \end{itemize}
+    \item \textbf{Prohibited Generative Functions:} Any function that actively generates new sentences, paragraphs, or conceptual ideas (e.g., ``rewrite this paragraph for me,'' ``give me three different opening lines,'' ``brainstorm plot ideas'').
+    \item \textbf{Analogy:} The work is crafted entirely by hand. The author may use a power saw (the word processor) and a measuring tape (the grammar checker), but they do not use a machine that automatically builds the chair for them.
+    \item \textbf{Statement of Fact:} ``The entirety of this work, from concept to final prose, is the product of human authorship, utilizing only standard, non-generative assistive software.''
+\end{itemize}
+
+\subsection*{ATS-1: Augmented Authorship}
+\begin{itemize}
+    \item \textbf{Principle:} The human author is the sole originator of all core concepts, characters, plot, and prose. Generative AI is used strictly as a \textbf{process tool} for refinement, brainstorming, analysis, or research under full authorial control. The AI’s function is to enhance the author’s own creative process, not to generate original narrative content.
+    \item \textbf{Key Distinction:} The bright line is the origin of the prose. In ATS-1, the AI \textbf{reacts to and analyzes text already written by the human}. In ATS-2 and higher, the AI \textbf{generates new prose based on a human prompt}.
+    \item \textbf{Permitted AI Functions:}
+    \begin{itemize}
+        \item \textbf{Sounding Board:} Brainstorming and testing pre-existing, human-generated ideas.
+        \item \textbf{Refinement \& Style Analysis:} Suggesting alternative phrasing for author-written text.
+        \item \textbf{Research \& Summarization:} Assisting in research or summarizing large bodies of text.
+        \item \textbf{Translation:} Assisting in the translation of an author's own work.
+    \end{itemize}
+    \item \textbf{Analogy:} The architect using advanced CAD software. The architect conceives of the building. They then use the software to draft their vision and run stress tests. The software executes and refines the human's vision; it does not create it.
+    \item \textbf{Statement of Fact:} ``This work is human-authored, augmented by AI-assisted refinement and analysis under the author's direct control.''
+    \item \textbf{The Transformative Modifier (ATS-1T):} While machine translation (MT) technically ``drafts'' new sentences in the target language, it is fundamentally a rendering of the author's original human-authored prose. For the purposes of this framework, AI translation and accessibility reformatting of human source-text are categorized as \textbf{ATS-1T} rather than ATS-2, provided no new narrative concepts are generated by the model during the process.
+\end{itemize}
+
+\subsection*{ATS-2: Co-Creative Synthesis}
+\begin{itemize}
+    \item \textbf{Principle:} The work is a genuine synthesis between a human author and a generative AI. The AI is prompted to generate significant \textbf{local-level} portions of original prose (sentences or paragraphs).
+    \item \textbf{Key Distinction:} The human's role shifts from pure author to a hybrid of author and master editor. Unlike ATS-1, where AI refines human prose, here the AI generates new sub-structural fragments which the human then refines. 
+    \item \textbf{Permitted AI Functions:}
+    \begin{itemize}
+        \item Generating descriptive paragraphs based on specific sensory prompts.
+        \item Drafting dialogue variations based on character profiles and objectives.
+        \item Generating stylistic alternatives for a specific, author-defined narrative beat.
+    \end{itemize}
+    \item \textbf{Ethical Requirement:} To use the label ``Synthesis,'' the author SHOULD perform \textit{Substantial Curation} (§Appendix B) to ensure the final text reflects a unique human authorial voice.
+    \item \textbf{Analogy:} The music producer and the sampler. The producer (human) uses audio samples (AI-generated text) as core components, remixing and arranging them into a new composition.
+\end{itemize}
+
+\subsection*{ATS-3: Generative Curation}
+\begin{itemize}
+    \item \textbf{Principle:} The generative AI is the primary author of the prose. The human's role is that of a high-level director, providing the structural blueprint (outline and character bible).
+    \item \textbf{Key Distinction:} The drafting of a structural unit (scene or chapter) is the defining threshold for ATS-3. Even if the human later performs heavy editing, the act of using AI to bridge the gap from outline to scene establishes the AI as the primary prose architect.
+    \item \textbf{Permitted AI Functions:}
+    \begin{itemize}
+        \item Expanding a bullet-point outline into a rough first-draft scene or chapter.
+        \item Generating character descriptions and world-building assets from a list of traits.
+        \item Maintaining narrative consistency across long-form projects under human oversight.
+    \end{itemize}
+    \item \textbf{Analogy:} The film director. The director provides the script and direction, but the execution is performed by other agents (the AI).
+\end{itemize}
+
+\subsection*{ATS-4: Agent-Driven Generation}
+\begin{itemize}
+    \item \textbf{Principle:} The work is generated by an autonomous AI agent or a system of agents. The human's role is a systems architect, designing the AI agent(s) with specific personas and high-level goals. The human ``commissions'' the work from a custom-built AI entity.
+    \item \textbf{Key Distinction:} The human is not directing a scene; they are building the ``director'' who will then create the scene.
+    \item \textbf{Analogy:} The commissioner of a grand work of art. The commissioner (human) provides a detailed brief that defines the subject and the desired style and philosophy of the artist who will create it.
+    \item \textbf{Statement of Fact:} ``This work was generated by a custom-designed AI agent system, which autonomously executed a high-level creative brief and plot outline provided by the human architect.''
+\end{itemize}
+
+\subsection*{ATS-5: High-Level Conceptual Generation}
+\begin{itemize}
+    \item \textbf{Principle:} The work is almost entirely generated by an AI system, including the core plot, characters, and world-building based on a high-level conceptual prompt.
+    \item \textbf{Key Distinction:} The human provides an \textit{abstract goal}, not a concrete plan. The AI performs the roles of architect, director, and author.
+    \item \textbf{Analogy:} The patron requesting a masterpiece. The patron simply states a desire (``Create for me a symphony''), leaving almost all creative and structural decisions to the composer (the AI).
+    \item \textbf{Statement of Fact:} ``This work was generated by an AI system based on a high-level conceptual prompt provided by the human initiator.''
+\end{itemize}
+
+% --- Appendix B: Glossary ---
+\newpage
+\section{Glossary of Terms}
+\begin{itemize}
+    \item \textbf{Agentic System:} An AI configuration capable of autonomous task execution based on high-level objectives rather than step-by-step instructions. In the ATS context, this refers to systems used in ATS-4 to execute a creative brief independently.
+    \item \textbf{AI Drafting:} The generation of novel token sequences intended as publishable content (or production code/asset equivalents) that survive into the final work.
+    \item \textbf{Audit Trail:} Private records supporting an ATS disclosure claim (e.g., timestamps, prompt logs, drafts, diffs, tool history), retained by a custodian for potential verification.
+    \item \textbf{Bright Line:} The primary methodological threshold used to distinguish between \textit{Augmented Authorship} (ATS-1) and \textit{Co-Creative Synthesis} (ATS-2). It is determined by the origin of the first-pass prose.
+    \item \textbf{Context Window:} The maximum volume of data an AI system can process in a single session, dictating how much of a manuscript the AI can ``remember'' during a specific task.
+    \item \textbf{De Minimis Exception:} A bounded exemption allowing negligible AI-generated inclusions (Extent E0) under explicit demarcation (e.g., ``found footage''), subject to institutional override.
+    \item \textbf{Evidence Class:} A category of audit artifacts (e.g., timestamps, redacted prompts, attestation) used to communicate the nature of available proof for institutional triage.
+    \item \textbf{First-Pass Prose:} Any novel sentence or paragraph drafted by an AI system that survives into publication, excluding mechanical corrections and transformative rendering under ATS-1T.
+    \item \textbf{Grounding:} The process of anchoring AI outputs in verified datasets or human-provided source material to ensure factual accuracy and narrative consistency.
+    \item \textbf{Human Curation Level:} A self-declared integrity indicator describing the degree of human revision applied to AI drafts (High/Substantial, Moderate, Low/None). This is an integrity requirement, not a tier classifier.
+    \item \textbf{Human-in-the-Loop (HITL):} A creative workflow that requires active human intervention, oversight, or decision-making at critical stages of the AI generation process.
+    \item \textbf{Large Language Model (LLM):} A type of artificial intelligence trained on massive text corpora to predict and generate grammatically structured, human-like prose.
+    \item \textbf{Mechanical Corrections:} Surface-level suggestions such as spell-checking, basic grammar, or punctuation that do not generate new narrative content. These do not count as AI drafting.
+    \item \textbf{Modality:} The specific medium or type of creative output (e.g., text, image, audio, video, code, or research).
+    \item \textbf{Outline:} A structural blueprint for a creative work, consisting of headings or beat sheets, but lacking complete narrative prose.
+    \item \textbf{Prose:} Grammatically structured written language forming the narrative body of a work. 
+    \item \textbf{Provenance:} The documented record of the origin and history of a creative work, essential for verifying claims of authorship and methodology.
+    \item \textbf{Structural Unit:} A coherent, higher-order component of a work (e.g., a scene, chapter, code module, or full-frame image) used as the classification boundary between ATS-2 and ATS-3.
+    \item \textbf{Substantial Curation \& Editing:} A qualitative integrity standard required for the ATS-2 (Synthesis) label. It implies the human author has significantly altered AI output to impart a unique authorial voice.
+    \item \textbf{Surviving Content:} Material that appears in the final distributed artifact (book, EPUB/PDF, release build, image master), as opposed to discarded prototypes or internal notes.
+    \item \textbf{Token:} The discrete mathematical unit of text (ranging from a character to a short word) used by models to process and generate language.
+    \item \textbf{Token Sequence:} A continuous string of tokens generated by a model. A sequence is considered AI-drafted if its primary semantic choices were made by the model.
+    \item \textbf{Transformative Rendering (ATS-1T):} The use of AI to convert 100\% human-authored source text into a different language or format without the addition of new narrative content.
+    \item \textbf{Unit of Generation:} The granularity at which AI is used to draft content (local fragments vs. structural units). This is the definitive metric for distinguishing ATS-2 from ATS-3.
+\end{itemize}
+
+
+% --- Appendix C: Non-Textual ---
+\newpage
+\section{Application to Non-Textual Media}
+While this v1.0 framework uses textual creation as its primary model, the ATS tier principles (Unaugmented, Augmented, Co-Creative, etc.) are designed to be conceptually applicable to other creative domains with appropriate domain-specific interpretations.
+
+% --- C1 ---
+\subsection{Modality-Specific Interpretation: Research}
+When applying the ATS tiers to the \textbf{Research} modality (\texttt{ats\_level\_research}), the following interpretations apply:
+
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} Research conducted via primary/secondary sources without generative assistance.
+    \item \textbf{ATS-1 (Augmented):} AI used for summarizing human-curated sources, fact-checking author-provided claims, or translation of source material.
+    \item \textbf{ATS-2 (Co-Creative):} AI used to identify new sources or patterns based on human-provided keywords and parameters.
+    \item \textbf{ATS-3 (Directed):} AI generates a comprehensive research report or literature review from a human-provided topic or outline.
+    \item \textbf{ATS-4 (Agentic):} A custom-designed AI research agent autonomously scours databases and synthesizes a corpus based on high-level goals. (The human serves as the \textit{Systems Architect}).
+    \item \textbf{ATS-5 (Initiated):} AI determines the research methodology, sources, and synthesis based on a conceptual prompt.
+\end{itemize}
+
+% --- C.2 ---
+\subsection{Modality-Specific Interpretation: Visual Arts}
+When using the ATS tiers for the \textbf{Image} (\texttt{ats\_level\_image}) modality, the following interpretations apply:
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} The work is created via manual brushwork, traditional photography, or digital painting without generative assistance. Tooling is limited to passive functions (e.g., layers, standard color correction, non-generative filters).
+    \item \textbf{ATS-1 (Augmented):} Use of AI for generative fill in minor background areas, upscaling, or denoising a human-composed work.
+    \item \textbf{ATS-2 (Co-Creative):} Composing an image using specific AI-generated assets as layers or components, which are then manually overpainted or heavily composited by the artist.
+    \item \textbf{ATS-3 (Directed):} AI generates a full-frame image based on a detailed human-provided sketch or multi-prompt storyboard.
+    \item \textbf{ATS-4 (Agentic):} Human designs a custom agent pipeline (e.g., a ``Style Model'') that autonomously generates a series of consistent assets from a high-level character bible.
+    \item \textbf{ATS-5 (Initiated):} AI generates the entire visual concept, composition, and final render from a single high-level prompt.
+\end{itemize}
+
+% --- C.3 ---
+\subsection{Modality-Specific Interpretation: Video and Moving Image}
+When using the ATS tiers for the \textbf{Video} (\texttt{ats\_level\_video}) modality, the following interpretations apply:
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} Traditional cinematography and editing. Footage is human-captured, and the edit is performed via manual timing and standard transitions without generative synthesis.
+    \item \textbf{ATS-1 (Augmented):} AI-assisted rotoscoping, color grading, or frame-interpolation (slow motion) on human-shot footage.
+    \item \textbf{ATS-2 (Co-Creative):} Integrating AI-generated textures, background elements, or short b-roll clips into a primarily human-edited and directed sequence.
+    \item \textbf{ATS-3 (Directed):} AI generates full cinematic sequences or clips based on a detailed human-provided shot list, storyboard, and character reference.
+    \item \textbf{ATS-4 (Agentic):} A custom-designed agent system (e.g., an autonomous ``virtual director'') produces a finished video work from a high-level creative brief.
+    \item \textbf{ATS-5 (Initiated):} AI generates the entire narrative, visual assets, and final edit of a video work from a high-level conceptual prompt.
+\end{itemize}
+
+% --- C.4 ---
+\subsection{Modality-Specific Interpretation: Audio and Music}
+When using the ATS tiers for the \textbf{Audio} modality (\texttt{ats\_level\_audio}), the following interpretations apply:
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} Manual performance and arrangement. Musical elements are recorded or programmed via MIDI by the human author without generative assistance.
+    \item \textbf{ATS-1 (Augmented):} Use of AI for automated mixing/mastering, noise reduction, or pitch correction on human-performed tracks.
+    \item \textbf{ATS-2 (Co-Creative):} Integrating AI-generated loops or melodic fragments into a human-arranged and performed composition.
+    \item \textbf{ATS-3 (Directed):} AI generates a full musical arrangement based on a human-provided lead sheet, MIDI structure, and style brief.
+    \item \textbf{ATS-4 (Agentic):} A custom-built AI composer or production system generates a full multi-track work or album based on human-defined emotional parameters and structural goals.
+    \item \textbf{ATS-5 (Initiated):} AI generates a complete musical work (composition and performance) from a high-level genre or thematic prompt.
+\end{itemize}
+
+% --- C.5 ---
+\subsection{Modality-Specific Interpretation: 3D and Spatial Design}
+When using the ATS tiers for \textbf{3D Modeling} or \textbf{Spatial Data} (\texttt{ats\_level\_data}), the following interpretations apply:
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} Manual polygon modeling, sculpting, and UV unwrapping. Assets are created and placed within a scene entirely by human effort.
+    \item \textbf{ATS-1 (Augmented):} Use of AI for automated retopology, UV unwrapping assistance, or texture map generation for human-modeled assets.
+    \item \textbf{ATS-2 (Co-Creative):} Placing AI-generated 3D assets into a human-designed environment, or using AI to generate variations of a base human-made mesh.
+    \item \textbf{ATS-3 (Directed):} AI generates a complete 3D environment or complex architectural model based on human-defined parameters, constraints, and structural blueprints.
+    \item \textbf{ATS-4 (Agentic):} A custom-designed generative agent system autonomously populates or simulates a spatial environment based on high-level goals provided by the systems architect.
+    \item \textbf{ATS-5 (Initiated):} AI determines the entire spatial architecture, asset composition, and lighting of a 3D scene from a high-level conceptual prompt.
+\end{itemize}
+
+% --- C6 ---
+\newpage
+\subsection{Modality-Specific Interpretation: Software Development}
+When applying the ATS tiers to the \textbf{Code} modality (\texttt{ats\_level\_code}), the following interpretations apply. In this context, ``code'' includes source files, build scripts, infrastructure-as-code, configuration files, tests, and executable logic.
+
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} All implementation is authored by a human. Tooling is limited to passive functions (syntax highlighting, linting rules, compilation errors, and static analysis) that do not generate new code.
+
+    \item \textbf{ATS-1 (Augmented):} AI is used to \textbf{review, explain, refactor, debug, optimize, or document} human-authored code, or to generate small non-substantive scaffolds (e.g., boilerplate templates) that remain under direct human control. The human remains the originator of the program logic and architecture.
+
+    \item \textbf{ATS-2 (Co-Creative):} AI generates \textbf{localized implementation units} (e.g., functions, classes, tests, queries, small scripts) from human-defined requirements, interfaces, and constraints. The human developer substantially curates, verifies correctness, and integrates the generated units into the codebase (including writing or validating tests and performing security review as appropriate).
+
+    \item \textbf{ATS-3 (Directed):} AI generates \textbf{structural units} (e.g., a complete module, subsystem, service, feature slice, or end-to-end script) from a detailed human-provided technical specification and architecture. The human directs the design, then audits, edits, and validates the generated code to production standards.
+
+    \item \textbf{ATS-4 (Agentic):} A custom-designed agent system autonomously executes a multi-step engineering objective (e.g., planning tasks, modifying multiple files, running test suites, iterating on failures, producing PR-ready changes) under high-level goals and constraints provided by the human systems architect. The human primarily reviews and approves outputs.
+
+    \item \textbf{ATS-5 (Initiated):} AI determines most of the architecture and implementation approach from a high-level prompt, generating substantial portions of the codebase with minimal human specification beyond desired outcomes.
+
+\end{itemize}
+
+\noindent \textit{Note:} For code, ``first-pass code'' refers to AI-generated tokens that survive into the repository (including generated tests or configuration). Passive tooling (linters, compilers, formatters) does not count as drafting. If AI output is used only as non-shipped reference (e.g., a discarded prototype or an explanatory snippet), it does not affect the disclosed ATS tier.
+
+% --- C7 ---
+\newpage
+\subsection{Modality-Specific Interpretation: Data and Structured Assets}
+When applying the ATS tiers to the \textbf{Data} modality (\texttt{ats\_level\_data}), the following interpretations apply. In this context, ``data'' includes structured datasets, tables, metadata, ontologies, annotations, configuration files, procedural parameters, and structured asset descriptors (including those used to drive 3D/spatial pipelines).
+
+\begin{itemize}
+    \item \textbf{ATS-0 (Manual):} Data is collected, authored, and organized without generative assistance (e.g., manual curation of datasets, hand-authored metadata, manually constructed ontologies or taxonomies).
+
+    \item \textbf{ATS-1 (Augmented):} AI is used to \textbf{clean, normalize, validate, convert, or analyze} human-curated data without generating novel structured records beyond mechanical transformation (e.g., deduplication, schema mapping, format conversion, anomaly detection, tagging suggestions that remain under human acceptance).
+
+    \item \textbf{ATS-2 (Co-Creative):} AI generates \textbf{specific structured elements} (records, labels, attributes, parameter sets, annotations) from human-provided constraints, exemplars, or partial templates, and the human substantially curates, verifies, and integrates the outputs into the authoritative dataset.
+
+    \item \textbf{ATS-3 (Directed):} AI produces \textbf{complete structured units} (e.g., a full dataset split, a comprehensive annotation pass, a coherent ontology module, a full configuration/parameter suite, or a procedural asset specification) from a detailed human-provided schema, rules, and acceptance criteria; the human then audits and edits the result.
+
+    \item \textbf{ATS-4 (Agentic):} A custom-designed agent system autonomously executes an end-to-end data objective (e.g., sourcing, scraping/ingestion where permitted, structuring, labeling, validation, and reporting) under high-level human goals and constraints, with the human acting primarily as systems architect and final approver.
+
+    \item \textbf{ATS-5 (Initiated):} AI determines most of the structure, methodology, and content of the dataset from a high-level conceptual prompt, with minimal human specification of schema or acceptance criteria.
+\end{itemize}
+
+\noindent \textit{Note:} If the output is primarily prose (e.g., narrative explanations or reports), it should be classified under \texttt{ats\_level\_text}. If the output is primarily structured records, parameters, or annotations, it should be classified under \texttt{ats\_level\_data}.
+
+
+
+
+
+
+% --- Appendix D: Governance ---
+\newpage
+\section{Governance and Versioning}
+The Authorship Transparency Statement (ATS) Framework is established as a living technical standard. Given the rapid pace of generative AI development, this section outlines the rules for the framework's evolution and the mechanism for its ongoing maintenance.
+
+\subsection{Semantic Versioning (SemVer)}
+The ATS protocol utilizes \textbf{Semantic Versioning (SemVer)} to ensure that changes are communicated clearly to creators, publishers, and automated systems.
+\begin{itemize}
+    \item \textbf{Major Versions (v1.0, v2.0):} Represent fundamental shifts in the ``Bright Line'' logic or the introduction of new tiers that alter the foundational classification of creative works.
+    \item \textbf{Minor Versions (v1.1, v1.2):} Reserved for the addition of new modalities (e.g., adding specific tiers for spatial computing or VR), new metadata fields, or significant clarifications to the Glossary of Terms.
+    \item \textbf{Patch Releases (v1.0.1):} Limited to typo corrections, formatting updates, or bibliographical maintenance that does not affect the underlying logic of the tiers.
+\end{itemize}
+
+\subsection{Community Evolution and Feedback}
+Standardization is a collaborative process. While the core principles of v1.0 are designed to be robust, the framework anticipates the need for community-driven refinements. 
+\begin{itemize}
+    \item \textbf{Feedback Loop:} Creators and institutional implementers are encouraged to submit edge-case scenarios or modality-specific suggestions.
+    \item \textbf{Public Repository:} The active development branch and historical changelogs are maintained at: \url{https://github.com/MeaningfulnessMediaGroup/ATS-Framework}. This serves as the primary hub for technical discussions and the proposal of new ``Official Rulings'' (refer to Appendix E).
+\end{itemize}
+
+\subsection{Digital Persistence and Archival}
+To provide a stable foundation for the creative industry, every major and minor version of the ATS framework is assigned a unique \textbf{Digital Object Identifier (DOI)} and permanently archived on \textbf{Zenodo}. This ensures that a creator who discloses their work as ``ATS v1.0 compliant'' in 2026 will still have a verifiable, immutable reference standard available decades later, regardless of future iterations.
+
+
+
+% --- Appendix E ---
+\newpage
+\section{Official Rulings on Common Edge Cases}
+To maintain the integrity of the ``Bright Line'' and reduce subjectivity, the following rulings define the application of ATS Tiers to specific common scenarios.
+
+\begin{description}
+    \item[Predictive Text and Autocomplete:] Standard mobile or desktop autocomplete (predicting the next word based on human typing) is categorized as \textbf{ATS-0}. It is considered a passive assistive function.
+    \item[Advanced Stylistic Rewriting:] The use of tools (e.g., Grammarly, ProWritingAid) to rewrite an existing \textit{human} sentence for clarity or tone is categorized as \textbf{ATS-1}. Because the human provided the original prose, the AI is reacting (Reactive Use).
+    \item[AI as ``Found Footage'':] If a work includes AI-generated text specifically as a diegetic artifact (e.g., a character reading a machine-generated email), the work \textbf{MAY} utilize a \textit{de minimis} exception to remain ATS-1. This exception \textbf{MUST} meet the following conditions: that the generated portion is clearly demarcated (e.g., via typography or block quotes) and remains at the \textbf{E0} ($<1\%$) extent. Institutions utilizing the ATS protocol \textbf{MAY} choose to override this exception and require ATS-2 disclosure based on internal risk-tolerance.
+    \item[Voice-to-Text and Dictation:] Automated transcription of human speech into text is \textbf{ATS-0}. If an AI is used to subsequently clean up the ``disfluencies'' (ums, ahs) of the transcript without changing the narrative content, it is \textbf{ATS-1}.
+    \item[Paraphrasing Tools:] Utilizing AI to paraphrase a large body of author-owned notes or journals into narrative prose is categorized as \textbf{ATS-2}. Even if the facts are human-owned, the AI is drafting the specific token sequences that form the sentences.
+    \item[Generative Outlining:] Using AI to brainstorm plot beats, character names, or structural arcs—where no AI-drafted prose survives into the final work—is categorized as \textbf{ATS-1}. The ``Bright Line'' applies strictly to the origin of published prose. While the adoption of AI-generated ideas is a significant methodological choice, it does not move the work into a co-creative tier (ATS-2+) under the v1.0 standard.
+
+\end{description}
+
+
+\end{document}
