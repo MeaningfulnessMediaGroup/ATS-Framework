@@ -1,8 +1,8 @@
 # Authorship Transparency Statement (ATS) Framework v1.0
 
-![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.placeholder-blue)
-![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)
-![Protocol Status](https://img.shields.io/badge/Status-Public%20Standardization%20Proposal-green)
+[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.18091714-blue)](https://doi.org/10.5281/zenodo.18091714)
+[![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
+[![Protocol Status](https://img.shields.io/badge/Status-Public%20Standardization%20Proposal-green)](https://github.com/MeaningfulnessMediaGroup/ATS-Framework)
 
 **Protocol ID:** `ATS-FRAMEWORK-1.0`  
 **Latest Version:** v1.0 (Released January 2026)  
@@ -34,6 +34,20 @@ The entire framework is anchored on the **origin of the first complete draft of 
 | **ATS-3** | **Directed** | Director | AI drafts structural units (scenes/chapters) from outlines. |
 | **ATS-4** | **Agent-Driven** | Systems Architect | Custom AI agent executes a high-level creative brief. |
 | **ATS-5** | **Conceptual** | Patron | AI generates plot, characters, and prose from high-level concepts. |
+
+---
+
+## 📏 The Extent Axis (E-Scale)
+
+The **E-Scale** provides quantitative resolution regarding the volume of AI-drafted content within a specific work. While the Tier (0–5) defines *how* AI was used, the Extent defines *how much* of the final version originated as AI drafts.
+
+| Level | Name | Volume | Typical Use Case |
+| :--- | :--- | :--- | :--- |
+| **E0** | **Micro-use** | < 1% | A single sentence or minor background detail. |
+| **E1** | **Minimal** | 1–10% | Occasional scenes or specific descriptive blocks. |
+| **E2** | **Substantial** | 10–50% | Multiple chapters or core components. |
+| **E3** | **Dominant** | 50–90% | Majority of prose/assets originated as AI drafts. |
+| **E4** | **Total** | > 90% | Fully generated work with minimal human revision. |
 
 ---
 
@@ -107,7 +121,7 @@ Standardization is a collaborative process. We welcome input from creators, publ
 
 If you utilize this framework in your research or platform, please cite it as follows:
 
-> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [Zenodo DOI Link]
+> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://10.5281/zenodo.18091714]
 
 ---
 
