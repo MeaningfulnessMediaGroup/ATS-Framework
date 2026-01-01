@@ -1,6 +1,6 @@
 # Authorship Transparency Statement (ATS) Framework v1.0
 
-[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.18091714-blue)](https://doi.org/10.5281/zenodo.18091714)
+[![Zenodo DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.18091713-blue)](https://doi.org/10.5281/zenodo.18091713)
 [![License](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey)](https://creativecommons.org/licenses/by/4.0/)
 [![Protocol Status](https://img.shields.io/badge/Status-Public%20Standardization%20Proposal-green)](https://github.com/MeaningfulnessMediaGroup/ATS-Framework)
 
@@ -123,7 +123,7 @@ Standardization is a collaborative process. We welcome input from creators, publ
 
 If you utilize this framework in your research or platform, please cite it as follows:
 
-> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://10.5281/zenodo.18091714]
+> Bee, D. (2026). *Authorship Transparency Statement (ATS) Framework v1.0: A Technical Standard for the Multi-Tiered Disclosure of Generative AI in Creative Works*. Meaningfulness Media Group. Protocol ID: ATS-FRAMEWORK-1.0. [https://doi.org/10.5281/zenodo.18091713]
 
 ---
 
